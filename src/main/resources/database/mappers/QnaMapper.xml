@@ -4,6 +4,8 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.gm.home.board.qna.QnaMapper">
+
+	<!-- 글목록 -->
 	<select id="getList" parameterType="Pager" resultType="QnaVO">
 		SELECT *
 		FROM QNA
@@ -11,7 +13,8 @@
 		LIMIT #{startRow}, #{perPage}
 	</select>
 	
-	<insert id="setAdd" parameterType="QnaVO">
+	<!-- 글쓰기 -->
+	<insert id="setWrite" parameterType="QnaVO">
 		INSERT INTO QNA
 		VALUES (null, #{writer}, #{title}, #{contents}, 0, now(), 1, 1, 1)
 	</insert>
