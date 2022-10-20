@@ -3,6 +3,8 @@ package com.gm.home.board.qna;
 import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,7 @@ public class QnaController {
 		return "qna";
 	}
 	
+	// 글쓰기	
 	@GetMapping("/qna/write")
 	public String setWrite() throws Exception {
 		
@@ -46,7 +49,7 @@ public class QnaController {
 		
 		redirectAttributes.addAttribute("result", result);
 		
-		return "redirect:./list";
+		return "";//"redirect:./list";
 	}
 	
 	// 글목록
@@ -59,6 +62,26 @@ public class QnaController {
 		mv.addObject("list", ar);
 		mv.addObject("pager", pager);
 		mv.setViewName("board/list");
+		
+		return mv;
+	}
+	
+	// 상세보기
+//	@GetMapping("/qna/detail")
+//	public String getDetail(QnaVO qnaVO) throws Exception {
+//		
+//		return "board/detail";
+//	}
+	
+	@GetMapping("/qna/detail")
+	public ModelAndView getDetail(QnaVO qnaVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		qnaVO = qnaService.getDetail(qnaVO);
+		
+		mv.addObject("detail", qnaVO);
+		mv.setViewName("board/detail");
+		log.info("dfgh");
 		
 		return mv;
 	}

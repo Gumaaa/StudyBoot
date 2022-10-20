@@ -63,7 +63,7 @@ class QnaMapperTest {
 			qnaVO.setTitle("title" + i);
 			qnaVO.setContents("contents" + i);
 			
-			int ar = qnaMapper.setAdd(qnaVO);
+//			int ar = qnaMapper.setAdd(qnaVO);
 			
 //			assertNotEquals(0, ar);
 		}

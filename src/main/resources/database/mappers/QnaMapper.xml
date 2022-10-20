@@ -14,8 +14,38 @@
 	</select>
 	
 	<!-- 글쓰기 -->
-	<insert id="setWrite" parameterType="QnaVO">
+	<insert id="setWrite" parameterType="QnaVO"  useGeneratedKeys="true" keyProperty="num">
 		INSERT INTO QNA
 		VALUES (null, #{writer}, #{title}, #{contents}, 0, now(), 1, 1, 1)
 	</insert>
+	
+	<!-- 첨부파일 -->
+	<insert id="setFileAdd" parameterType="QnaFileVO">
+		INSERT INTO QNAFILES
+		VALUES (NULL, #{num}, #{fileName}, #{oriName})
+	</insert>
+	
+	<!-- 상세보기 -->
+	<select id="getDetail" parameterType="QnaVO" resultMap="getDetailResult">
+		SELECT *
+		FROM QNA Q
+		JOIN QNAFILES QF
+		ON Q.NUM = QF.num
+		WHERE Q.NUM = #{num};
+	</select>
+	
+	<resultMap type="QnaVo" id="getDetailResult">
+		<id column="NUM" property="num" />
+		<result column="WRITER" property="writer" />
+		<result column="TITEL" property="title" />
+		<result column="CONTENTS" property="contents" />
+		<result column="HIT" property="hit" />
+		<result column="REGDATE" property="regDate" />
+		<collection property="qnaFileVO" javaType="List" ofType="QnaFileVO">
+			<id column="NUM" property="num" />
+			<result column="FILENUM" property="fileNum" />
+			<result column="FILENAME" property="fileName" />
+			<result column="ORINAME" property="oriName" />
+		</collection>
+	</resultMap>
 </mapper>

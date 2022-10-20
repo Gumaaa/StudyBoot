@@ -6,6 +6,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.gm.home.board.qna.QnaVO" alias="QnaVO" />
+		<typeAlias type="com.gm.home.board.qna.QnaFileVO" alias="QnaFileVO" />
 		<typeAlias type="com.gm.home.util.Pager" alias="Pager" />
 	</typeAliases>
 </configuration> 
