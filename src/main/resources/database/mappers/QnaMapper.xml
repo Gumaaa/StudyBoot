@@ -31,19 +31,18 @@
 		FROM QNA Q
 		JOIN QNAFILES QF
 		ON Q.NUM = QF.num
-		WHERE Q.NUM = #{num};
+		WHERE Q.NUM = #{num}
 	</select>
 	
-	<resultMap type="QnaVo" id="getDetailResult">
+	<resultMap type="QnaVO" id="getDetailResult">
 		<id column="NUM" property="num" />
 		<result column="WRITER" property="writer" />
-		<result column="TITEL" property="title" />
+		<result column="TITLE" property="title" />
 		<result column="CONTENTS" property="contents" />
 		<result column="HIT" property="hit" />
 		<result column="REGDATE" property="regDate" />
-		<collection property="qnaFileVO" javaType="List" ofType="QnaFileVO">
-			<id column="NUM" property="num" />
-			<result column="FILENUM" property="fileNum" />
+		<collection property="qnaFileVOs" javaType="List" ofType="QnaFileVO">
+			<id column="FILENUM" property="fileNum" />
 			<result column="FILENAME" property="fileName" />
 			<result column="ORINAME" property="oriName" />
 		</collection>

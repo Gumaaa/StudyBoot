@@ -23,7 +23,13 @@
 		<tr>
 			<td>${detail.title}</td>
 			<td>${detail.writer}</td>
+			<td>${detail.regDate}</td>
+			<td>${detail.hit}</td>
+			<td>${detail.contents}</td>
 		</tr>
 	</table>
+	<c:forEach items="${detail.qnaFileVOs}" var="qnaFile">
+		<img alt="" src="/file/qna/${qnaFile.fileName}">
+	</c:forEach>
 </body>
 </html>

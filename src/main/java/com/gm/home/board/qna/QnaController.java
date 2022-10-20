@@ -49,7 +49,7 @@ public class QnaController {
 		
 		redirectAttributes.addAttribute("result", result);
 		
-		return "";//"redirect:./list";
+		return "redirect:./list";
 	}
 	
 	// 글목록
@@ -79,9 +79,9 @@ public class QnaController {
 		
 		qnaVO = qnaService.getDetail(qnaVO);
 		
+		log.info("qr : {}", qnaVO);
 		mv.addObject("detail", qnaVO);
 		mv.setViewName("board/detail");
-		log.info("dfgh");
 		
 		return mv;
 	}
