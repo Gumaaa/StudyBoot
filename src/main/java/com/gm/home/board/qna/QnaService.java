@@ -1,4 +1,4 @@
-package com.gm.home.board.qna;
+ package com.gm.home.board.qna;
 
 import java.io.File;
 import java.util.List;
@@ -44,11 +44,6 @@ public class QnaService {
 		
 		
 		for(MultipartFile f : qnaVO.getFiles()) {
-			if (f.isEmpty()) {
-				log.info("----- exception 발생 -----");
-				throw new Exception();
-			}
-			
 			if(!f.isEmpty()) {
 				
 				log.info("Filename : {}", f.getOriginalFilename());
