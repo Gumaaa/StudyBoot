@@ -29,7 +29,8 @@
 		</tr>
 	</table>
 	<c:forEach items="${detail.qnaFileVOs}" var="qnaFile">
-		<img alt="" src="/file/qna/${qnaFile.fileName}">
+			<img alt="" src="/file/qna/${qnaFile.fileName}">
+		<a href="/fileDown/qna?fileNum=${qnaFile.fileNum}">이미지 다운로드</a>
 	</c:forEach>
 </body>
 </html>

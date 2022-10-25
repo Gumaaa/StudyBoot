@@ -7,6 +7,11 @@
 	<typeAliases>
 		<typeAlias type="com.gm.home.board.qna.QnaVO" alias="QnaVO" />
 		<typeAlias type="com.gm.home.board.qna.QnaFileVO" alias="QnaFileVO" />
+		<typeAlias type="com.gm.home.member.MemberVO" alias="MemberVO" />
+		<typeAlias type="com.gm.home.member.MemberRoleVO" alias="MemberRoleVO" />
+		<typeAlias type="com.gm.home.member.RoleVO" alias="RoleVO" />
 		<typeAlias type="com.gm.home.util.Pager" alias="Pager" />
+		
+		<typeAlias type="java.util.List" alias="List"/>
 	</typeAliases>
 </configuration> 

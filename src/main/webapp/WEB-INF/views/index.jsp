@@ -13,6 +13,15 @@
 	<h1>Index Page</h1>
 	<img alt="" src="./images/DDDD.jpg" id="id1">
 	<a href="./qna/list">QNA</a>
+	<c:if test="${member.id == null}">
+		<a href="/member/add">JOIN</a>
+		<a href="/member/login">LOGIN</a>
+	</c:if>
+	<c:if test="${member.id != null}">
+		<a href="/member/logout">LOGOUT</a>
+		${member.id}님의 역할은 ${member.roleVOs[0].roleName}
+	</c:if>
+  
 	<div>
 	<img alt="" src="/file/qna/dfbce689-af1c-4fb7-9346-f354585aa417_겁쟁이 쉼터.png">
 	<img alt="" src="/file/notice/SS.jpg">

@@ -1,4 +1,4 @@
-package com.gm.home.board.config;
+package com.gm.home.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
