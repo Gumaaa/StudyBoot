@@ -8,11 +8,12 @@
 <title>Insert title here</title>
 <c:import url="./temp/boot.jsp"></c:import>
 <link href="/css/test.css" rel="stylesheet">
+<script defer src="/js/test.js"></script>
 </head>
 <body>
 	<h1>Index Page</h1>
+	<div><a href="./qna/list">QNA</a></div>
 	<img alt="" src="./images/DDDD.jpg" id="id1">
-	<a href="./qna/list">QNA</a>
 	<c:if test="${member.id == null}">
 		<a href="/member/add">JOIN</a>
 		<a href="/member/login">LOGIN</a>
@@ -28,5 +29,17 @@
 	<a href="/fileDown/qna?fileNum=2">qnaDown</a>
 	<a href="/fileDown/notice?fileNum=2">noticeDown</a>
 	</div>
+
+	<button id="btn">click</button>
+	
+	<button class="buttons">btn1</button>
+	<button class="buttons">btn2</button>
+	<button class="buttons">btn3</button>
+	
+	<div id="test">>
+
+		뿡
+	</div>
+
 </body>
 </html>

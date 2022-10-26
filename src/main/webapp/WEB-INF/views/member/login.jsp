@@ -11,11 +11,11 @@
 	<h1>로그인</h1>
 	<form action="login" method="POST">
 	<div class="mb-3">
-	  <input type="text" name="id" class="form-control" id="id" placeholder="아이디">
+	  <input type="text" name="id" class="form-control" id="id" placeholder="아이디" value="quqsue">
 	</div>
 	
 	<div class="mb-3">
-	  <input type="password" name="pw" class="form-control" id="pw" placeholder="비밀번호">
+	  <input type="password" name="pw" class="form-control" id="pw" placeholder="비밀번호" value="quqsue">
 	</div>
 	
 	<button type="submit" class="btn btn-primary">로그인</button>

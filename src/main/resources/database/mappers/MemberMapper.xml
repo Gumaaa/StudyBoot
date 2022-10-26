@@ -12,9 +12,16 @@
 	</insert>
 	
 	<!-- 회원 등급 -->
+	<!-- 회원가입 시 자동 입력 -->
 	<insert id="setRole" parameterType="MemberVO">
 		INSERT INTO MEMBER_ROLE
 		VALUES(#{id}, 3)
+		
+		<!-- 강사님 방법 -->
+		<!-- INSERT INTO MEMBER_ROLE
+      	VALUES(#{id}, 
+      		(SELECT * FROM ROLE WHERE roleName = 'ROLE_MEMBER')
+      	) -->
 	</insert>
 	
 	<!-- 로그인 -->
@@ -23,7 +30,7 @@
 		FROM MEMBER m
 			JOIN 
 			MEMBER_ROLE mr
-			on m.id = mr.id
+			ON m.id = mr.id
 			JOIN
 			ROLE r
 			ON r.num = mr.num
@@ -39,5 +46,12 @@
 			<result column="roleName" property="roleName"/>
 		</collection>
 	</resultMap>
+	
+	<!-- 아이디 중복확인 -->
+	<select id="getIdCheck" parameterType="id" resultType="int">
+		SELECT COUNT(id) 
+		FROM MEMBER
+		WHERE id = #{id}
+	</select>
 	
 </mapper>

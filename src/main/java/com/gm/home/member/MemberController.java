@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -33,6 +34,7 @@ public class MemberController {
 	public String getLogin(MemberVO memberVO, HttpSession session) throws Exception {
 		
 		memberVO = memberService.getLogin(memberVO);
+		
 		session.setAttribute("member", memberVO);
 		
 		return "redirect:../";
@@ -44,5 +46,16 @@ public class MemberController {
 		session.invalidate();
 		
 		return "redirect:../";
+	}
+	
+	//아이디 중복확인
+	@GetMapping("/member/idCheck")
+	@ResponseBody
+	public int getIdCheck(MemberVO memberVO) throws Exception {
+		
+		int result = memberService.getIdCheck(memberVO);
+		
+		return result;
+		
 	}
 }
