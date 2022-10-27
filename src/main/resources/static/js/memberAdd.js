@@ -44,7 +44,7 @@ $(".check").click(function () {
 let results = [false, false, false, false, false]; // id, pw, pwEquals, name, email
 
 // ID Check
-$("#id").blur(function() {
+$("#id").blur(function () {
     let result = nullCheck($("#id").val(), $("#idCheck"), "아이디는 ");
     let id = $("#id").val();
 
@@ -52,10 +52,10 @@ $("#id").blur(function() {
 
     // 단, id가 비어있지 않을 때 실행
     // function(응답 받아올 때는 이름은 마음대로)
-    $.get("./idCheck?id="+id, function(data){
+    $.get("./idCheck?id=" + id, function (data) {
         console.log("Data : ", data);
 
-        if(data == '0') {
+        if (data == '0') {
             $("#idCheck").html("사용가능한 아이디입니다.");
             results[0] = true;
         } else {
@@ -74,13 +74,13 @@ $("#id").blur(function() {
 
 // null값일 때도 비밀번호가 같다고 인식 됨
 $("#pw").on({
-    blur : function() {
+    blur: function () {
         let result = nullCheck($("#pw").val(), $("#pwCheck"), "비밀번호는 ");
 
         results[1] = result;
     },
 
-    change: function() {
+    change: function () {
         $("#pwEquals").val("");
         results[2] = false;
         $("#pwEqualsCheck").html("비밀번호가 일치하지 않습니다.");
@@ -89,9 +89,9 @@ $("#pw").on({
 });
 
 // PWEquals Check
-$("#pwEquals").blur(function(){
-    let result = equals ($("#pw").val(), $("#pwEquals").val());
-    if(result) {
+$("#pwEquals").blur(function () {
+    let result = equals($("#pw").val(), $("#pwEquals").val());
+    if (result) {
         $("#pwEqualsCheck").html("");
     } else {
         $("#pwEqualsCheck").html("비밀번호가 일치하지 않습니다.");
@@ -100,25 +100,98 @@ $("#pwEquals").blur(function(){
     results[2] = result;
 });
 
-$("#name").blur(function() {
+$("#name").blur(function () {
     let result = nullCheck($("#name").val(), $("#nameCheck"), "이름은 ");
 
     results[3] = result;
 });
 
-$("#email").blur(function() {
-    let result = nullCheck( $("#email").val(), $("#emailCheck"), "이메일은 ");
+$("#email").blur(function () {
+    let result = nullCheck($("#email").val(), $("#emailCheck"), "이메일은 ");
 
     results[4] = result;
 });
 
-$("#joinBtn").click(function() {
-    if(results.includes(false)) {
+$("#joinBtn").click(function () {
+    if (results.includes(false)) {
         alert("필수 항목을 입력해 주세요.");
     } else {
         $("#joinForm").submit();
     }
 
+});
+
+$("#test").click(function () {
+    let id = "123";
+    let name = "gram"
+
+    $.post("test", {
+        //파라미터 이름:변수명
+        id: id,
+        name: name
+    }, function (result) {
+        console.log("result : ", result);
+        //result = JSON.parse(result);
+        console.log("Name : ", result.name);
+    });
+});
+
+$("#test2").click(function () {
+    let id = "qwer";
+
+    $.ajax({
+        type: "GET",
+        url: "idCheck",
+        data: {
+            id: id
+        },
+        success: function (data) {
+            console.log("GET : ", data);
+        },
+        error: function (xhr, status, error) {
+            console.log("xhr : ", xhr);
+            console.log("status : ", status);
+            console.log("error : ", error);
+        }
+    });
+
+    $("#test3").click(function () {
+        let id = "qwer";
+        let name = "gram";
+        let ar = [1, 2, 3];
+
+        $.ajax({
+            type: "POST",
+            url: "test",
+            traditional: true, //배열을 전송할 때 사용, true
+            data: {
+                id: id,
+                name: name,
+                ar: ar
+            },
+            success: function (data) {
+                console.log("POST : ", data)
+            }
+        })
+
+    });
+});
+
+let count = 3;
+$("#s1Add").click(function () {
+
+    // 삭제
+    $("#s1Add").remove();
+
+    // 추가
+    // let add = '<option class="abc" id="abc'+count+'">'+count+'</option>';
+
+    // $("#s1").append(add);
+    // count++;
+});
+
+$("#s1").click(function(){
+    $("#s1").empty();
 });
 
 

@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
 @RequestMapping("/member/*")
+@Slf4j
 public class MemberController {
 	
 	@Autowired
@@ -59,5 +62,17 @@ public class MemberController {
 		
 		return result;
 		
+	}
+	
+	@PostMapping("test")
+	@ResponseBody
+	public MemberVO setTest(MemberVO memberVO, String [] ar) throws Exception {
+		log.info("*******************************");
+		log.info("ID : {}", memberVO.getId());
+		log.info("Name : {}", memberVO.getName());
+		for(String s : ar) {
+			log.info("ar : {}", s);
+		}
+		return memberVO;
 	}
 }

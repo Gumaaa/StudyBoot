@@ -14,31 +14,31 @@
 	<h1>회원가입</h1>
 	<form action="add" method="POST" id="joinForm">
 		<div class="input-group flex-nowrap">
-		  <span class="input-group-text" id="addon-wrapping">@</span>
+		  <span class="input-group-text" id="addon-wrapping">ID</span>
 		  <input type="text" class="form-control" name="id" id="id" placeholder="아이디" aria-label="id" aria-describedby="addon-wrapping">
 		</div>
 		<div id="idCheck"></div>
 
 		<div class="input-group flex-nowrap">
-		  <span class="input-group-text" id="addon-wrapping">@</span>
+		  <span class="input-group-text" id="addon-wrapping">PW</span>
 		  <input type="password" class="form-control" name="pw" id="pw" placeholder="비밀번호" aria-label="pw" aria-describedby="addon-wrapping">
 		</div>
 		<div id="pwCheck"></div>
 		
 		<div class="input-group flex-nowrap">
-		  <span class="input-group-text" id="addon-wrapping">@</span>
+		  <span class="input-group-text" id="addon-wrapping">PW</span>
 		  <input type="password" class="form-control" name="pwEquals" id="pwEquals" placeholder="비밀번호 재확인" aria-label="pwEquals" aria-describedby="addon-wrapping">
 		</div>
 		<div id="pwEqualsCheck"></div>
 			
 		<div class="input-group flex-nowrap">
-		  <span class="input-group-text" id="addon-wrapping">@</span>
+		  <span class="input-group-text" id="addon-wrapping">NAME</span>
 		  <input type="text" class="form-control" name="name" id="name" placeholder="이름" aria-label="name" aria-describedby="addon-wrapping">
 		</div>
 		<div id="nameCheck"></div>
 	
 		<div class="input-group flex-nowrap">
-		  <span class="input-group-text" id="addon-wrapping">@</span>
+		  <span class="input-group-text" id="addon-wrapping">EMAIL</span>
 		  <input type="email" class="form-control" name="email" id="email" placeholder="이메일" aria-label="email" aria-describedby="addon-wrapping">
 		</div>
 		<div id="emailCheck"></div>
@@ -49,6 +49,13 @@
 		<button type="reset" class="btn btn-danger">취소</button>
 		<a href="../" class="btn btn-dark">Index</a>
 	</form>
+
+	<!-- Post btn -->
+	<div>
+		<button type="button" id="test">Post Test</button>
+		<button type="button" id="test2">Ajax Get Test</button>
+		<button type="button" id="test3">Ajax Post Test</button>
+	</div>
 	
 	<div>
 		<div>
@@ -73,6 +80,14 @@
 				약관3
 			</div>
 		</div>
+	</div>
+
+	<div>
+		<select id="s1">
+			<option>1</option>
+			<option>2</option>
+		</select>
+		<button type="button" id="s1Add">Add</button>
 	</div>
 </body>
 </html>
