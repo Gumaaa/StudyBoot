@@ -29,7 +29,7 @@
 	<select id="getDetail" parameterType="QnaVO" resultMap="getDetailResult">
 		SELECT *
 		FROM QNA Q
-		JOIN QNAFILES QF
+		LEFT JOIN QNAFILES QF
 		ON Q.NUM = QF.num
 		WHERE Q.NUM = #{num}
 	</select>
@@ -48,9 +48,27 @@
 		</collection>
 	</resultMap>
 	
+	<!-- 파일 출력 -->
 	<select id="getFileDetail" parameterType="QnaFileVO" resultType="QnaFileVO">
 		SELECT *
 		FROM QNAFILES
 		WHERE FILENUM = #{fileNum}
 	</select>
+	
+	<!-- 글수정 -->
+	<update id="setUpdate" parameterType="QnaVO">
+		UPDATE QNA
+		SET
+		TITLE = #{title},
+		CONTENTS = #{contents}
+		WHERE NUM = #{num}
+	</update>
+	
+	<!-- 글수정 시 파일삭제 -->
+	<delete id="setFileDelete" parameterType="QnaFileVO">
+		DELETE FROM QNAFILES
+		WHERE fILENUM = #{fileNum}
+	</delete>
+	
+	
 </mapper>

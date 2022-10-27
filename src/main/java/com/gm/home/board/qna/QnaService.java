@@ -29,6 +29,7 @@ public class QnaService {
 	
 	@Value("${app.upload.qna}")
 	private String path;
+	
 	// 글쓰기
 	public int setWrite(QnaVO qnaVO) throws Exception {
 		
@@ -38,7 +39,7 @@ public class QnaService {
 		File file = new File(path);
 		
 		if(!file.exists()) {
-			Boolean check = file.mkdirs();
+			boolean check = file.mkdirs();
 			log.info("check : {}", check);
 		}
 		
@@ -77,5 +78,24 @@ public class QnaService {
 	public QnaFileVO getFileDetail(QnaFileVO qnaFileVO) throws Exception {
 		
 		return qnaMapper.getFileDetail(qnaFileVO);
+	}
+	
+	// 글수정
+	public int setUpdate(QnaVO qnaVO) throws Exception {
+		
+		return qnaMapper.setUpdate(qnaVO);
+	}
+	
+	// 글수정 시 파일삭제
+	public int setFileDelete(QnaFileVO qnaFileVO) throws Exception {
+		qnaFileVO = qnaMapper.getFileDetail(qnaFileVO);
+		int result = qnaMapper.setFileDelete(qnaFileVO);
+		
+		
+		if (result > 0) {
+			fileManager.DeleteFile(path, qnaFileVO);
+		} 
+		
+		return result;
 	}
 }

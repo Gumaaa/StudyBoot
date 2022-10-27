@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -19,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.gm.home.util.Pager;
 
 @Controller
+@RequestMapping("/qna/*")
 public class QnaController {
 	
 	@Autowired
@@ -36,13 +39,13 @@ public class QnaController {
 	}
 	
 	// 글쓰기	
-	@GetMapping("/qna/write")
+	@GetMapping("write")
 	public String setWrite() throws Exception {
 		
 		return "board/write";
 	}
 	
-	@PostMapping("/qna/write")
+	@PostMapping("write")
 	public String setWrite(QnaVO qnaVO, RedirectAttributes redirectAttributes) throws Exception {
 		
 		int result = qnaService.setWrite(qnaVO);
@@ -53,7 +56,7 @@ public class QnaController {
 	}
 	
 	// 글목록
-	@GetMapping("/qna/list")
+	@GetMapping("list")
 	public ModelAndView getList(Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
@@ -73,7 +76,7 @@ public class QnaController {
 //		return "board/detail";
 //	}
 	
-	@GetMapping("/qna/detail")
+	@GetMapping("detail")
 	public ModelAndView getDetail(QnaVO qnaVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
@@ -84,6 +87,27 @@ public class QnaController {
 		mv.setViewName("board/detail");
 		
 		return mv;
+	}
+	
+	@GetMapping("update")
+	public ModelAndView SetUpdate(QnaVO qnaVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+
+		qnaVO = qnaService.getDetail(qnaVO);
+		mv.addObject("update", qnaVO);
+		mv.setViewName("board/update");
+		
+		return mv;
+	}
+	
+	@PostMapping("fileDelete")
+	@ResponseBody
+	public int fileDelete(QnaFileVO qnaFileVO) throws Exception {
+		QnaVO qnaVO = new QnaVO();
+		
+		int result = qnaService.setFileDelete(qnaFileVO);
+		
+		return result;
 	}
 
 }

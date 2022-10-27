@@ -1,3 +1,5 @@
+// util.js
+
 // function nullCheck(data) {
 //     if (data == null || data == "") {
 //         return false;

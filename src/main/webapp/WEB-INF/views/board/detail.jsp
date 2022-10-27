@@ -28,9 +28,15 @@
 			<td>${detail.contents}</td>
 		</tr>
 	</table>
-	<c:forEach items="${detail.qnaFileVOs}" var="qnaFile">
-			<img alt="" src="/file/qna/${qnaFile.fileName}">
-		<a href="/fileDown/qna?fileNum=${qnaFile.fileNum}">이미지 다운로드</a>
-	</c:forEach>
+	<div>
+		<c:forEach items="${detail.qnaFileVOs}" var="qnaFile">
+				<img alt="" src="/file/qna/${qnaFile.fileName}">
+			<a href="/fileDown/qna?fileNum=${qnaFile.fileNum}">이미지 다운로드</a>
+		</c:forEach>
+	</div>
+	
+	<br>
+	<a class="btn btn-primary" href="./update?num=${detail.num}">수정</a>
+	<a class="btn btn-danger" href="#">삭제</a>
 </body>
 </html>

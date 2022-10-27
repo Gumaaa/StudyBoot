@@ -26,9 +26,10 @@ public class FileManageController {
 		//DB 정보 조회
 		if(path.equals("qna")) {
 			qnaFileVO = qnaService.getFileDetail(qnaFileVO);
-		} else if(path.equals("notice"))
-		qnaFileVO.setFileName("dfbce689-af1c-4fb7-9346-f354585aa417_겁쟁이 쉼터.png");
-		qnaFileVO.setOriName("겁쟁이 쉼터.png");
+		} else if(path.equals("notice")) {
+//			qnaFileVO.setFileName("dfbce689-af1c-4fb7-9346-f354585aa417_겁쟁이 쉼터.png");
+//			qnaFileVO.setOriName("겁쟁이 쉼터.png");	
+		}
 		
 		mv.addObject("fileVO", qnaFileVO);	
 		mv.addObject("path", path);

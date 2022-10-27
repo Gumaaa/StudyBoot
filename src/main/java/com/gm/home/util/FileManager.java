@@ -94,4 +94,11 @@ public class FileManager extends AbstractView{
 		return bf.toString();
 		
 	}
+	
+	public boolean DeleteFile(String path, QnaFileVO qnaFileVO) {
+		
+		 File file = new File(path, qnaFileVO.getFileName());
+		 
+		 return file.delete();
+	}
 }
