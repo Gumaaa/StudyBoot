@@ -46,8 +46,23 @@ let results = [false, false, false, false, false]; // id, pw, pwEquals, name, em
 // ID Check
 $("#id").blur(function() {
     let result = nullCheck($("#id").val(), $("#idCheck"), "아이디는 ");
+    let id = $("#id").val();
 
     results[0] = result;
+
+    // 단, id가 비어있지 않을 때 실행
+    // function(응답 받아올 때는 이름은 마음대로)
+    $.get("./idCheck?id="+id, function(data){
+        console.log("Data : ", data);
+
+        if(data == '0') {
+            $("#idCheck").html("사용가능한 아이디입니다.");
+            results[0] = true;
+        } else {
+            $("#idCheck").html("중복되는 아이디가 있습니다.");
+            results[0] = false;
+        }
+    });
 });
 
 // PW Check

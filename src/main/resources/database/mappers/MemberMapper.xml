@@ -48,7 +48,7 @@
 	</resultMap>
 	
 	<!-- 아이디 중복확인 -->
-	<select id="getIdCheck" parameterType="id" resultType="int">
+	<select id="getIdCheck" parameterType="MemberVO" resultType="Integer">
 		SELECT COUNT(id) 
 		FROM MEMBER
 		WHERE id = #{id}

@@ -35,7 +35,7 @@ public class MemberService {
 	}
 	
 	//아이디 중복확인
-	public int getIdCheck(MemberVO memberVO) throws Exception {
+	public Integer getIdCheck(MemberVO memberVO) throws Exception {
 		
 		return memberMapper.getIdCheck(memberVO);
 	}

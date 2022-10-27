@@ -10,10 +10,11 @@
 		<typeAlias type="com.gm.home.member.MemberVO" alias="MemberVO" />
 		<typeAlias type="com.gm.home.member.MemberRoleVO" alias="MemberRoleVO" />
 		<typeAlias type="com.gm.home.member.RoleVO" alias="RoleVO" />
+		
 		<typeAlias type="com.gm.home.util.Pager" alias="Pager" />
 		
 		<typeAlias type="java.util.List" alias="List"/>
-		<typeAlias type="java.lang.int" alias="int"/>
+		<typeAlias type="java.lang.Integer" alias="Integer"/>
 		
 	</typeAliases>
 </configuration> 

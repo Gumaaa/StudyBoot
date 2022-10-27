@@ -11,5 +11,5 @@ public interface MemberMapper {
 	
 	public int setRole(MemberVO memberVO) throws Exception;
 	
-	public int getIdCheck(MemberVO memberVO) throws Exception;
+	public Integer getIdCheck(MemberVO memberVO) throws Exception;
 }

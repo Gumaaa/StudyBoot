@@ -22,9 +22,9 @@ class MemberTest  {
 		
 		memberVO.setId("111");
 		
-//		int result = memberMapper.getIdCheck(memberVO);
+		int result = memberMapper.getIdCheck(memberVO);
 		log.info("요구르트 : {}", memberVO.getId());
-//		log.info("맞나요 : {}", result);
+		log.info("맞나요 : {}", result);
 		
 		
 	}
