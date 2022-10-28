@@ -32,17 +32,18 @@
 						<textarea class="form-control" name="contents" id="contents">${update.contents}</textarea>
 					</div>
 					
-					<div class="mb-3" id="fileAddForm">
+					<div class="mb-3">
+						<button type="button" id="fileAddBtn">파일 추가</button>
+					</div>
+					<div class="mb-3" id="fileAddForm" data-file-size="${update.qnaFileVOs.size()}">
 						<c:forEach items="${update.qnaFileVOs}" var="updateFile">
 							<p>${updateFile.oriName}
 								<button type="button" class="deleteFile" data-file-num="${updateFile.fileNum}">삭제</button> 
 							</p>
 						</c:forEach>
 					</div>
+					<div id="fileAddCheck"></div>
 					
-					<div class="mb-3">
-						<button type="button" id="fileAddBtn">파일 추가</button>
-					</div>
 					
 
 					<div>

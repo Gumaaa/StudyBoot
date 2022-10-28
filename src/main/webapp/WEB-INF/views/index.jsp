@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,10 @@
 </head>
 <body>
 	<h1>Index Page</h1>
+	<h1><spring:message code="hi" var="h"/></h1>
+	<h1><spring:message code="test" text="Code가 없어요~" /></h1>
+	<h1>${h}</h1>
+	
 	<div><a href="./qna/list">QNA</a></div>
 	<img alt="" src="./images/DDDD.jpg" id="id1">
 	<c:if test="${member.id == null}">
@@ -20,7 +25,9 @@
 	</c:if>
 	<c:if test="${member.id != null}">
 		<a href="/member/logout">LOGOUT</a>
-		${member.id}님의 역할은 ${member.roleVOs[0].roleName}
+		<spring:message code="welcome" arguments="${member.name}"></spring:message>
+		<!-- argumentSeparator="||"는 원하는 구분자 ,면 변수 사이에 , 사용가능 -->
+		<spring:message code="welcome2" arguments="${member.id}||${member.name}" argumentSeparator="||"></spring:message>
 	</c:if>
   
 	<div>

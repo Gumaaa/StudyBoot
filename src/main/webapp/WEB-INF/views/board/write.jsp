@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,24 +16,31 @@
 		<div class="row justify-content-center">
 			<div class="col-6">
 				<h1>Board Write Page</h1>
-				<form action="./write" method="post" enctype="multipart/form-data">
+				<form:form modelAttribute="qnaVO" method="POST" enctype="multipart/form-data">
+				<%-- <form action="./write" method="post" enctype="multipart/form-data"> --%>
 				
 					<!-- 제목 -->
 					<div class="mb-3">
 						<label for="title" class="form-label">Title</label>
-						<input type="text" name="title" id="title" class="form-control" placeholder="제목">
+						<form:input path="title" id="title" cssClass="form-control"/>
+						<form:errors path="title"></form:errors>
+						<!-- <input type="text" name="title" id="title" class="form-control" placeholder="제목"> -->
 					</div>
 					
 					<!-- 작성자 -->
 					<div class="mb-3">
 						<label for="writer" class="form-label">Writer</label>
-						<input type="text" name="writer" id="writer" class="form-control" placeholder="작성자">
+						<form:input path="writer" id="writer" cssClass="form-control"/>
+						<form:errors path="writer"></form:errors>
+						<!-- <input type="text" name="writer" id="writer" class="form-control" placeholder="작성자"> -->
 					</div>
 					
 					<!-- 내용 -->
 					<div class="mb-3">
 						<label for="contents" class="form-label">Contents</label>
-						<textarea class="form-control" name="contents" id="contents"></textarea>
+						<form:textarea path="contents" id="contents" cssClass="form-control"/>
+						<form:errors path="contents"></form:errors>
+						<!-- <textarea class="form-control" name="contents" id="contents"></textarea> -->
 					</div>
 
 					<!-- 파일 -->
@@ -45,7 +53,8 @@
 					<div>
 					<button class="btn btn-primary" type="submit">작성</button>
 					<button class="btn btn-danger" href="#">취소</button>
-				</form>
+					</form:form>
+				<%-- </form> --%>
 			</div>
 		</div>
 	</div>

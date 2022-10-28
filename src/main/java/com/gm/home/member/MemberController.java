@@ -1,10 +1,13 @@
 package com.gm.home.member;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,13 +25,26 @@ public class MemberController {
 	
 	//회원가입	
 	@GetMapping("add")
-	public void setAdd() throws Exception {}
+	public void setAdd(@ModelAttribute MemberVO memberVO) throws Exception {
+//		MemberVO memberVO = new MemberVO();
+//		
+//		model.addAttribute(memberVO);
+	}
 	
 	@PostMapping("add")
-	public String setAdd(MemberVO memberVO) throws Exception {
-		int result = memberService.setAdd(memberVO);
+	public ModelAndView setAdd(@Valid MemberVO memberVO, BindingResult bindingResult, ModelAndView mv) throws Exception {
+//		int result = memberService.setAdd(memberVO);
 		
-		return "redirect:../";
+		if(bindingResult.hasErrors()) {
+			// 검증에 실패하면 회원가입하는 jsp로 foward
+			log.info("===== 비상비상-! 검증 에러 =====");
+			mv.setViewName("member/add");
+			
+			return mv;
+		}
+		
+		mv.setViewName("redirect:../");
+		return mv;
 	}
 	
 	//로그인
