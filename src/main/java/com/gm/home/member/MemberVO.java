@@ -19,7 +19,6 @@ public class MemberVO {
 	@NotBlank(message = "아이디 입력해라;;;")
 	private String id;
 	@NotBlank
-	@Pattern(regexp = "(?=.*[0-9])(?=.*[a-z])(?=.*\\\\W)(?=\\\\S+$).{6,12}")
 	private String pw;
 	private String pwCheck;
 	@NotBlank

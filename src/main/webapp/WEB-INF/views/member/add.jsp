@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <c:import url="../temp/boot.jsp"></c:import>
 <script src="/js/util.js"></script>
-<!-- <script defer src="/js/memberAdd.js"></script> -->
+<script defer src="/js/memberAdd.js"></script>
 </head>
 <body>
 	<h1>회원가입</h1>
@@ -20,8 +20,9 @@
 			<form:input path="id" cssClass="form-control" id="id" />
 		  <!-- <input type="text" class="form-control" name="id" id="id" placeholder="아이디" aria-label="id" aria-describedby="addon-wrapping"> -->
 		</div>
-		<form:errors path="id"></form:errors>
-		<div id="idCheck"></div>
+		<div id="idCheck">
+			<form:errors path="id"></form:errors>
+		</div>
 
 		<div class="input-group flex-nowrap">
 		  <span class="input-group-text" id="addon-wrapping">PW</span>
@@ -32,7 +33,7 @@
 		<div id="pwCheck"></div>
 		
 		<div class="input-group flex-nowrap">
-		  <span class="input-group-text" id="addon-wrapping">PW</span>
+		  <span class="input-group-text" id="addon-wrapping">PW2</span>
 		  <form:password path="pwCheck" cssClass="form-control" id="pwEquals"/>
 		  <!-- <input type="password" class="form-control" name="pwEquals" id="pwEquals" placeholder="비밀번호 재확인" aria-label="pwEquals" aria-describedby="addon-wrapping"> -->
 		</div>
@@ -45,7 +46,9 @@
 		  <!-- <input type="text" class="form-control" name="name" id="name" placeholder="이름" aria-label="name" aria-describedby="addon-wrapping"> -->
 		</div>
 		<form:errors path="name"></form:errors>
-		<div id="nameCheck"></div>
+		<div id="nameCheck">
+			${name}
+		</div>
 	
 		<div class="input-group flex-nowrap">
 		  <span class="input-group-text" id="addon-wrapping">EMAIL</span>

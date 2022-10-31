@@ -1,11 +1,14 @@
 package com.gm.home.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,10 +38,30 @@ public class MemberController {
 	public ModelAndView setAdd(@Valid MemberVO memberVO, BindingResult bindingResult, ModelAndView mv) throws Exception {
 //		int result = memberService.setAdd(memberVO);
 		
-		if(bindingResult.hasErrors()) {
-			// 검증에 실패하면 회원가입하는 jsp로 foward
-			log.info("===== 비상비상-! 검증 에러 =====");
+//		if(bindingResult.hasErrors()) {
+//			// 검증에 실패하면 회원가입하는 jsp로 foward
+//			log.info("===== 비상비상-! 검증 에러 =====");
+//			mv.setViewName("member/add");
+//			
+//			return mv;
+//		}
+		
+		boolean check = memberService.getMemberCheck(memberVO, bindingResult);
+		if(check) {
+			log.info("===== 비상비상-! 검증22 에러 =====");
 			mv.setViewName("member/add");
+			//====================================
+			List<FieldError> errors = bindingResult.getFieldErrors();
+			
+			 for(FieldError fieldError : errors) {
+	            log.info("fieldError: {}", fieldError);
+	            log.info("Field: {}", fieldError.getField());
+	            log.info("Message: {}", fieldError.getRejectedValue());
+	            log.info("Defalut: {}", fieldError.getDefaultMessage());
+	            log.info("Code: {}", fieldError.getCode());
+	            log.info("============================================");
+	            mv.addObject(fieldError.getField(), fieldError.getDefaultMessage());
+	         }
 			
 			return mv;
 		}
