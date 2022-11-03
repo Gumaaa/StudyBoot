@@ -4,6 +4,7 @@ let count = 0;
 let flag = true;
 $("#fileAddBtn").click(function () {
 
+    // 글 수정 시 갯수 세는 함수
     if (flag) {
         let size = $("#fileAddForm").attr("data-file-size");
         if (size == undefined) {

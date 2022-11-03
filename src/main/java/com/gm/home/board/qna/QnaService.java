@@ -30,7 +30,7 @@ public class QnaService {
 	@Value("${app.upload.qna}")
 	private String path;
 	
-	// 글쓰기
+	// 글쓰기 + 첨부파일
 	public int setWrite(QnaVO qnaVO) throws Exception {
 		
 		int result = qnaMapper.setWrite(qnaVO);

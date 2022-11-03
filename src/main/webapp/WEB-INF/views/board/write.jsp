@@ -47,9 +47,10 @@
 					<div>
 						<button type="button" id="fileAddBtn">파일 추가</button>
 					</div>
-						<div id="fileAddForm"></div>
-						<div id="fileAddCheck"></div>
+					<div id="fileAddForm"></div>
+					<div id="fileAddCheck"></div>
 					<br>
+					
 					<div>
 					<button class="btn btn-primary" type="submit">작성</button>
 					<button class="btn btn-danger" href="#">취소</button>

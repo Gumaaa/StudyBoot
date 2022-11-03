@@ -48,7 +48,7 @@
 		</collection>
 	</resultMap>
 	
-	<!-- 파일 출력 -->
+	<!-- File Controller에서 값을 읽기 위한 파일 출력 -->
 	<select id="getFileDetail" parameterType="QnaFileVO" resultType="QnaFileVO">
 		SELECT *
 		FROM QNAFILES
