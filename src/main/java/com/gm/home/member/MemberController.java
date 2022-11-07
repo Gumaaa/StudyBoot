@@ -2,17 +2,18 @@ package com.gm.home.member;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -72,25 +73,29 @@ public class MemberController {
 	
 	//로그인
 	@GetMapping("login")
-	public void getLogin() throws Exception {}
+	public void getLogin(@RequestParam(defaultValue = "false", required = false) Boolean error, String message, Model model) throws Exception {
+		if(error) {
+			model.addAttribute("msg", "ID 또는 PW를 확인하세요.");
+		}
+		//Controller에서 받아서 JSP로 다시 보내도 됨
+	}
 	
 	@PostMapping("login")
-	public String getLogin(MemberVO memberVO, HttpSession session) throws Exception {
+	public String getLogin() throws Exception {
 		
-		memberVO = memberService.getLogin(memberVO);
+		log.info("===== LOGIN POST =====");
 		
-		session.setAttribute("member", memberVO);
-		
-		return "redirect:../";
+		return "member/login";
 	}
 	
 	//로그아웃
-	@GetMapping("logout")
-	public String getLogout(HttpSession session) throws Exception {
-		session.invalidate();
-		
-		return "redirect:../";
-	}
+//	@GetMapping("logout")
+//	public String getLogout(HttpSession session) throws Exception {
+//		log.info("----- 내가 만든 로그아웃 -----");
+//		session.invalidate();
+//		
+//		return "redirect:../";
+//	}
 	
 	//아이디 중복확인
 	@GetMapping("idCheck")
@@ -102,6 +107,12 @@ public class MemberController {
 		return result;
 		
 	}
+	
+	@GetMapping("mypage")
+	public void getMyPage() throws Exception {
+		
+	}
+	
 	
 	@PostMapping("test")
 	@ResponseBody

@@ -25,7 +25,7 @@
 	</insert>
 	
 	<!-- 로그인 -->
-	<select id="getLogin" parameterType="MemberVO" resultMap="getLoginResult">
+	<select id="getLogin" parameterType="String" resultMap="getLoginResult">
 		SELECT * 
 		FROM MEMBER m
 			JOIN 
@@ -34,11 +34,12 @@
 			JOIN
 			ROLE r
 			ON r.num = mr.num
-		WHERE m.id=#{id} and pw=#{pw}
+		WHERE m.id=#{username}
 	</select>
 	
 	<resultMap type="MemberVO" id="getLoginResult">
 		<id column="id" property="id"/>
+		<result column="pw" property="pw"/>
 		<result column="name" property="name"/>
 		<result column="email" property="email"/>
 		<collection property="roleVOs" javaType="List" ofType="RoleVO" >

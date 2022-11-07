@@ -29,11 +29,12 @@ public class MemberService {
 		return result;
 	}
 	
+	// 로그인 처리는 MemberSecurityService에서 처리함
 	//로그인
-	public MemberVO getLogin(MemberVO memberVO) throws Exception {
-		
-		return memberMapper.getLogin(memberVO);
-	}
+//	public MemberVO getLogin(MemberVO memberVO) throws Exception {
+//		
+//		return memberMapper.getLogin(memberVO);
+//	}
 	
 	//아이디 중복확인
 	public Integer getIdCheck(MemberVO memberVO) throws Exception {
