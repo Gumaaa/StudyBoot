@@ -30,6 +30,9 @@
 		<!-- 로그인 전 -->
 		<!-- !isAuthenicated() : 로그인 안 했을 때 -->
 		<sec:authorize access="!isAuthenticated()">
+			<a href="/oauth2/authorization/kakao">
+				<img alt="" src="../images/kakao_login_medium_narrow.png">
+			</a>
 			<a href="/member/login">LOGIN</a>
 			<a href="/member/add">JOIN</a>
 		</sec:authorize>
@@ -38,7 +41,11 @@
 		<!-- isAuthenicated() : 로그인 했을 때 -->
 		<sec:authentication property="Principal" var="member"/>
 		<sec:authorize access="isAuthenticated()">
-			<a href="/member/logout">LOGOUT</a>
+		<form action="./member/logout" id="outForm" method="post">
+			<sec:csrfInput/>
+			<button>LOGOUT</button>
+		</form>
+			<a href="#" id="logout">LOGOUT</a>
 			<a href="/member/mypage">MYPAGE</a>
 			<spring:message code="welcome" arguments="${member.name}"></spring:message>
 			<!-- argumentSeparator="||"는 원하는 구분자 ,면 변수 사이에 , 사용가능 -->
@@ -69,6 +76,10 @@
 	<button class="buttons">btn3</button>
 
 	<div id="test">뿡</div>
-
+	<script type="text/javascript">
+		$("#logout").click(function() {
+			$("#outForm").submit();
+		})
+	</script>
 </body>
 </html>

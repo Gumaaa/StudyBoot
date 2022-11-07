@@ -1,5 +1,7 @@
 package com.gm.home.config;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +11,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import com.gm.home.member.MemberSecurityService;
+import com.gm.home.member.MemberSocialService;
 import com.gm.home.security.LoginFail;
 import com.gm.home.security.LoginSuccess;
 import com.gm.home.security.LogoutCustom;
@@ -31,6 +38,12 @@ public class SecurityConfig {
 	@Autowired
 	private LogoutSuccessCustom logoutSuccessCustom;
 	
+	@Autowired
+	private MemberSecurityService memberSecurityService;
+	
+	@Autowired
+	private MemberSocialService memberSocialService;
+	
 	@Bean
 	//public 선언하면 default로 바꾸라는 메세지 출력
 	WebSecurityCustomizer webSecurityCustomizer() {
@@ -49,10 +62,11 @@ public class SecurityConfig {
 	SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 		
 		httpSecurity
-					.cors()
-					.and()
 					.csrf()
-					.disable() // cors, and, csrf를 disable 시키겠다
+					.disable()
+					.cors()
+					.configurationSource(this.corsConfigurationSource())
+					.and()
 				.authorizeRequests() // 구분하기 위해 앞으로 땡김
 					.antMatchers("/admin").hasRole("ADMIN")
 					.antMatchers("/manager").hasAnyRole("ADMIN", "MANAGER")
@@ -79,9 +93,34 @@ public class SecurityConfig {
 					.addLogoutHandler(logoutCustom)
 					.invalidateHttpSession(true) // Session에 있는 정보를 폐기 할거냐 안 할거냐 true : 폐기O | false : 폐기X
 					.deleteCookies("JSESSIONID")
-					.permitAll();
+					.permitAll()
+					.and()
+				.rememberMe() // RememberMe 설정, 공공장소에서 사용 금지 ex)피시방
+					.rememberMeParameter("rememberMe")
+					.tokenValiditySeconds(300) // 로그인유지 유지시간, 초단원
+					.key("rememberMe") // 인증받은 사용자의 정보로 Token 생성 시 필요, '필수 값'
+					.userDetailsService(memberSecurityService) // 인증 절차를 실행할 UserDetailService, '필수'
+					.authenticationSuccessHandler(loginSuccess) // 로그인 성공 시 Handler
+					.and()
+				.oauth2Login() // Social Login 설정
+					.userInfoEndpoint()
+					.userService(memberSocialService)
+					;
 					
 		return httpSecurity.build();
+	}
+	
+	//@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration();
+		
+		configuration.setAllowedOrigins(Arrays.asList("http://127.0.0.1:5500", "http://192.168.1.37:5500", "*")); // List<Integer>
+		configuration.setAllowedMethods(Arrays.asList("GET", "POST"));
+		
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		
+		return source;
 	}
 	
 	//평문(Clear Text)을 암호화 시켜주는 객체 생성

@@ -42,6 +42,15 @@ public class QnaController {
 		return "qna";
 	}
 	
+	@GetMapping("hack")
+	@ResponseBody
+	public int hack(QnaVO qnaVO) throws Exception{
+		
+		qnaService.setWrite(qnaVO);
+		
+		return 1;
+	}
+	
 	// 글쓰기	
 	@GetMapping("write")
 	public String setWrite(@ModelAttribute QnaVO qnaVO) throws Exception {

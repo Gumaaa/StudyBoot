@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +16,7 @@
 	<h1>회원가입</h1>
 	<%-- <form action="./add" method="POST" id="joinForm"> --%>
 		<form:form modelAttribute="memberVO" method="POST" id="joinForm">
+		<sec:csrfInput/>
 		<div class="input-group flex-nowrap">
 		  <span class="input-group-text" id="addon-wrapping">ID</span>
 			<form:input path="id" cssClass="form-control" id="id" />
