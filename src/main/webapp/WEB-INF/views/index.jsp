@@ -30,6 +30,7 @@
 		<!-- 로그인 전 -->
 		<!-- !isAuthenicated() : 로그인 안 했을 때 -->
 		<sec:authorize access="!isAuthenticated()">
+			<!-- 카카오 로그인 -->
 			<a href="/oauth2/authorization/kakao">
 				<img alt="" src="../images/kakao_login_medium_narrow.png">
 			</a>
@@ -41,6 +42,7 @@
 		<!-- isAuthenicated() : 로그인 했을 때 -->
 		<sec:authentication property="Principal" var="member"/>
 		<sec:authorize access="isAuthenticated()">
+			<button type="button" id="kakao">KAKAO LOGOUT</button>
 		<form action="./member/logout" id="outForm" method="post">
 			<sec:csrfInput/>
 			<button>LOGOUT</button>
@@ -59,6 +61,9 @@
 			<sec:authorize access="hasAnyRole('ADMIN', 'MANAGER')">
 				<a href="/manager">manager</a>
 			</sec:authorize>
+			
+			<a href="/member/delete">회원탈퇴</a>
+			
 		</sec:authorize>
 		
 
@@ -79,6 +84,12 @@
 	<script type="text/javascript">
 		$("#logout").click(function() {
 			$("#outForm").submit();
+		})
+		
+		$("#kakao").click(function(){
+			$.get("https://developers.kakao.com/logout", function) {
+				location.reload();
+			}
 		})
 	</script>
 </body>
