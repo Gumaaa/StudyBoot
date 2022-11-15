@@ -22,11 +22,11 @@
 			<form action="./login" method="POST">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			<div class="mb-3">
-			  <input type="text" name="id" class="form-control" id="id" placeholder="아이디" value="${cookie.userId.value}">
+			  <input type="text" name="id" class="form-control" id="id" value="admin1" placeholder="아이디" value="${cookie.userId.value}">
 			</div>
 			
 			<div class="mb-3">
-			  <input type="password" name="pw" class="form-control" id="pw" placeholder="비밀번호">
+			  <input type="password" name="pw" class="form-control" value="admin1" id="pw" placeholder="비밀번호">
 			</div>
 			
 			<div class="input-group mb-3">

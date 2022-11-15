@@ -21,6 +21,11 @@
 	
 	<dependencies>
 		<!-- 버전은 지우면 Boot에서 자동으로 최신 버전으로 해줌 -->
+		<!-- Web Client -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-webflux</artifactId>
+	    </dependency>	
 		<!-- 검증 API -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

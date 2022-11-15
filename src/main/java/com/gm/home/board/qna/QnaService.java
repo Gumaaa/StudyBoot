@@ -30,6 +30,24 @@ public class QnaService {
 	@Value("${app.upload.qna}")
 	private String path;
 	
+	public boolean setSummerFileDelete(String fileName) throws Exception {
+		fileName = fileName.substring(fileName.lastIndexOf("/")+1);
+		log.info("DeleteFileName : {}", fileName);
+		
+		File file = new File(path, fileName);
+		
+		
+		return file.delete();
+	}
+	
+	public String setSummerFile(MultipartFile file) throws Exception {
+		String fileName = fileManager.saveFile(file, path);
+		
+		fileName = "/file/qna/" + fileName;
+		
+		return fileName;
+	}
+	
 	// 글쓰기 + 첨부파일
 	public int setWrite(QnaVO qnaVO) throws Exception {
 		
